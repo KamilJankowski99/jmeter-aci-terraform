@@ -59,6 +59,9 @@ steps:
   displayName: 'SETUP: Run Terraform Apply (target=file share)'
 
 - script: |
+    wget -O azcopy.tar.gz https://aka.ms/downloadazcopylinux64
+    tar -xf azcopy.tar.gz
+    sudo ./install.sh
     azcopy \
     --source $(JMETER_DIRECTORY_INPUT) \
     --destination $(terraform output storage_file_share_url) \
