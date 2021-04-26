@@ -62,7 +62,7 @@ steps:
     wget -O azcopy.tar.gz https://aka.ms/downloadazcopylinux64
     tar -xf azcopy.tar.gz
     sudo ./install.sh
-    azcopy \
+    /usr/lib/azcopy/azcopy \
     --source $(JMETER_DIRECTORY_INPUT) \
     --destination $(terraform output storage_file_share_url) \
     --dest-key $(terraform output storage_account_key) \
@@ -110,7 +110,10 @@ steps:
     scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
-      azcopy \
+    wget -O azcopy.tar.gz https://aka.ms/downloadazcopylinux64
+    tar -xf azcopy.tar.gz
+    sudo ./install.sh
+    /usr/lib/azcopy/azcopy \
         --source $(terraform output storage_file_share_url) \
         --destination $(JMETER_DIRECTORY_OUTPUT) \
         --source-key $(terraform output storage_account_key) \
